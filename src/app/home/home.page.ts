@@ -8,25 +8,25 @@ import { Platform } from '@ionic/angular';
   styleUrls: ['home.page.scss'],
 })
 export class HomePage {
-  constructor(private inAppBrowser : InAppBrowser, private platform : Platform) {}
+  constructor(private inAppBrowser: InAppBrowser, private platform: Platform) { }
   subscription: any
-  url=''
-  ngOnInit(){
-    
+  url = 'https://africmode.com'
+  ngOnInit() {
+    this.launchSite()
   }
-  launchSite(){
-    this.inAppBrowser.create(this.url,'');
+  launchSite() {
+    this.inAppBrowser.create(this.url, '');
   }
-  exitApp(){
+  exitApp() {
     navigator['app'].exitApp();
   }
-  ionViewDidEnter(){
-  
+  ionViewDidEnter() {
+
     this.subscription = this.platform.backButton.subscribe(async () => {
-        navigator['app'].exitApp();
-  });
+      navigator['app'].exitApp();
+    });
   }
-  ionViewWillLeave(){
+  ionViewWillLeave() {
     this.subscription.unsubscribe();
   }
 }
